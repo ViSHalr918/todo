@@ -1,0 +1,45 @@
+{%extends 'base.html'%}
+
+{%block main_block%}
+
+<div class="container">
+    {% if messages%}
+    {%for m in messages%}
+    <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+        <strong>{{m}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {%endfor%}
+    {%endif%}
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <h3 class="text-center">Shopping</h3>
+           
+            <div class=""><a href="{%url 'todo-create'%}" class="rounded btn btn-outline-success text-center form-control my-3">Add new task</a> </div>
+            {%for t in table%}
+            <div class="mb-5">
+            <strong>{{t.date_created}}</strong><a href="{%url 'todo-delete' t.id%}" class="text-decoration-none text-danger mb-1" style="display: flex; justify-content: end;">Delete</a>
+            <a href="{%url 'todo-completed' t.id%}" class="text-decoration-none text-success mb-1" style="display: flex; justify-content: end;">Mark as completed</a>
+            <a href="{%url 'todo-update' t.id%}" class="text-decoration-none">
+                <div class="border border-3 ps-3 shadow py-3 pt-3 text-capitalize">
+                <strong>{{t.title}}</strong> <br>
+                Due Date :  {{t.due_date}} <br>
+                <div class="fw-bold">  Status : {{t.status}} </div>
+                {{t.type}}
+                
+
+                </div> <hr></a>
+            </div>
+            
+
+            {%endfor%}
+            
+        </div>
+        <div class="col-4">
+            
+        </div>
+    </div>
+</div>
+
+{%endblock%}

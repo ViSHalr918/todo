@@ -1,0 +1,37 @@
+{%extends 'base.html'%}
+
+{%block main_block%}
+
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <form action="" method="post">
+                {%csrf_token%}
+                {{form}}
+                <button type="submit">Submit</button>
+            </form>
+            {%for t in table%}
+            <div class="mb-5">
+            <strong>{{t.date_created}}</strong><a href="{%url 'todo-delete' t.id%}" class="text-decoration-none text-danger mb-1" style="display: flex; justify-content: end;">Delete</a>
+            <a href="{%url 'todo-completed' t.id%}" class="text-decoration-none text-success mb-1" style="display: flex; justify-content: end;">Mark as completed</a>
+            <a href="{%url 'todo-update' t.id%}" class="text-decoration-none">
+                <div class="border border-3 ps-3 shadow py-3 pt-3 text-capitalize">
+                <strong>{{t.title}}</strong> <br>
+                Due Date :  {{t.due_date}} <br>
+                <div class="fw-bold">  Status : {{t.status}} </div>
+                {{t.type}}
+                
+
+                </div> <hr></a>
+            </div>
+            
+
+            {%endfor%}
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+
+
+{%endblock%}

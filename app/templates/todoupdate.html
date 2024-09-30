@@ -1,0 +1,21 @@
+{%extends 'base.html'%}
+
+{%block main_block%}
+
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <form action="" method="post">
+                {%csrf_token%}
+                {{form}}
+                <button class=" btn btn-outline-primary mt-4 transition ease-in-out delay-150 -translate-y-px-hover duration-300 scale-110-hover" type="submit">Update</button>
+                
+            </form>
+        </div>
+        <div class="col-4"></div>
+    </div>
+    <a href="{%url 'todo-list'%}" class="ms-5 mt-5">Back</a>
+</div>
+
+{%endblock%}
